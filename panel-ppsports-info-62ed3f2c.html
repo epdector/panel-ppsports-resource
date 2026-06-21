@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ppsports 故事 · 信任与陪伴</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #ffe7d4 0%, #fcd3b6 45%, #fbcbac 100%);
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem;
+    }
+
+    .story-card {
+      max-width: 880px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border-radius: 48px 24px 48px 24px;
+      box-shadow: 0 20px 40px -12px rgba(140, 75, 30, 0.2), 0 8px 20px rgba(0,0,0,0.04);
+      padding: 2.8rem 2.6rem;
+      transition: all 0.25s ease;
+    }
+
+    /* 标题区 — 短句开场 */
+    .opening {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .opening::after {
+      content: '';
+      display: block;
+      width: 72px;
+      height: 5px;
+      background: #e2824a;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .opening-verse {
+      font-size: 1.9rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #6f3f1f;
+      line-height: 1.4;
+    }
+
+    .opening-verse span {
+      background: #f3d1b3;
+      padding: 0 10px 2px 10px;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #4e2b13;
+    }
+
+    /* 承接段落 — 关于站点与可信 */
+    .backstory {
+      background: #fcf4ed;
+      padding: 1.5rem 1.8rem;
+      border-radius: 30px 12px 30px 12px;
+      margin: 2rem 0 2.4rem 0;
+      border-left: 4px solid #d99b6a;
+    }
+
+    .backstory p {
+      font-size: 1.06rem;
+      line-height: 1.75;
+      color: #3e2d1f;
+      margin-bottom: 1rem;
+    }
+
+    .backstory p:last-child {
+      margin-bottom: 0;
+    }
+
+    .backstory strong {
+      color: #9b5f34;
+      font-weight: 600;
+    }
+
+    .inline-link {
+      color: #b86d3c;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+      padding: 0 4px;
+    }
+
+    .inline-link:hover {
+      border-bottom-color: #b86d3c;
+      background: #ffe3d0;
+      border-radius: 12px;
+    }
+
+    /* 特点卡片列表 */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 2.2rem 0 2rem 0;
+    }
+
+    .feature-item {
+      flex: 1 1 180px;
+      background: white;
+      padding: 1.4rem 1.2rem;
+      border-radius: 28px 10px 28px 10px;
+      box-shadow: 0 8px 16px -8px rgba(100, 50, 20, 0.08);
+      border: 1px solid #f2dac8;
+      transition: all 0.2s;
+    }
+
+    .feature-item:hover {
+      box-shadow: 0 12px 24px -10px rgba(160, 80, 30, 0.12);
+      transform: translateY(-3px);
+      border-color: #d9a77c;
+    }
+
+    .feature-icon {
+      display: inline-block;
+      background: #f8e1cf;
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      text-align: center;
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+      color: #794a26;
+    }
+
+    .feature-item h3 {
+      font-size: 1.16rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #57361b;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #534435;
+      line-height: 1.5;
+    }
+
+    /* 场景 + 提示 (温和) */
+    .gentle-note {
+      background: #fcf4ed;
+      border-radius: 30px 12px 30px 12px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.8rem 0 1.8rem 0;
+    }
+
+    .gentle-note p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #3e2a1b;
+    }
+
+    .gentle-note .small-qa {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+    }
+
+    .small-qa span {
+      background: white;
+      padding: 0.4rem 1rem 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #4f351f;
+      border: 1px solid #eccbb4;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .small-qa span b {
+      color: #b86d3c;
+      font-weight: 600;
+    }
+
+    /* 温和结尾 */
+    .closing {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 2px dashed #eacdb9;
+      text-align: center;
+    }
+
+    .closing p {
+      color: #523e2c;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .closing .signature {
+      font-style: italic;
+      color: #906844;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* 隐藏种子字段 */
+    .seed-placeholder {
+      display: none;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .story-card {
+        padding: 2rem 1.5rem;
+        border-radius: 32px 16px 32px 16px;
+      }
+      .opening-verse {
+        font-size: 1.6rem;
+      }
+      .feature-grid {
+        gap: 0.8rem;
+      }
+      .feature-item {
+        flex: 1 1 100%;
+      }
+      .backstory,
+      .gentle-note {
+        padding: 1.2rem 1.2rem;
+      }
+      .small-qa span {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .story-card {
+        padding: 1.6rem 1rem;
+      }
+      .opening-verse {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="story-card">
+    <!-- 开场短句 -->
+    <div class="opening">
+      <div class="opening-verse">
+        有些站点，不喧哗，<br>却始终 <span>值得托付</span>。
+      </div>
+    </div>
+
+    <!-- 承接段落：站点介绍 & 可信说明 -->
+    <div class="backstory">
+      <p>第一次遇到 <a href="https://panel-ppsports.com" class="inline-link">pp体育</a> 这个名字，是从一位跑马拉松的朋友口中。他说「找一个稳定又能安静看数据的地方不容易，后来就习惯用这个面板了。」我带着好奇点开了那个链接，没有夸张的弹窗，也没有悬浮广告，界面干净得像一间刚打扫过的客厅。</p>
+      <p>后来我渐渐明白，<strong>可信的体育信息入口</strong>往往不靠热闹取胜。无论是追踪赛事节奏、查阅运动资讯，还是单纯想找一个不打扰的浏览环境，<a href="https://panel-ppsports.com" class="inline-link">pp体育</a> 更像一位陪伴者——它不催促你点击什么，只把内容稳妥地放在那里。<br>这种克制，本身就是一种信任感。</p>
+    </div>
+
+    <!-- 特点列表（三项，温和表达） -->
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-icon">&#9876;</div>
+        <h3>轻快响应</h3>
+        <p>页面加载利落，不论午间休息还是深夜翻看，都不需要等待太久。</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#9733;</div>
+        <h3>不过度打扰</h3>
+        <p>没有频繁推送，也不使用诱导性文案，信息呈现直接且友好。</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">&#9741;</div>
+        <h3>日常可用</h3>
+        <p>适合作为浏览体育资讯的安静去处，也适合随手收藏给同好。</p>
+      </div>
+    </div>
+
+    <!-- 温和提示 / 类似 FAQ 摘要 -->
+    <div class="gentle-note">
+      <p>经常有人问：这个站点需要注册吗？里面的信息更新快不快？其实 <a href="https://panel-ppsports.com" class="inline-link">pp体育</a> 给人的感觉更像一本翻不完的笔记——你可以随时打开，不用顾虑太多。它没有强推的功能，但该有的内容基本都在。</p>
+      <div class="small-qa">
+        <span><b>❓</b> 是否需要登录？ — 大部分浏览无需注册</span>
+        <span><b>❓</b> 适合新手吗？ — 界面直观，五分钟就熟悉</span>
+        <span><b>❓</b> 移动端体验？ — 自适应做得很舒服</span>
+      </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+      <p>一个站点能让人记住，往往不是因为功能有多庞大，而是它一直稳稳地在那里。<br>希望 <a href="https://panel-ppsports.com" class="inline-link">pp体育</a> 也能成为你日常浏览里，那个不用犹豫的角落。</p>
+      <div class="signature">—— 来自一位偶然路过的用户 · 秋</div>
+    </div>
+
+    <!-- 创作种子字段（仅用于变化，隐藏） -->
+    <div class="seed-placeholder">76d3f1db73be40c1</div>
+  </div>
+
+</body>
+</html>
